@@ -5,13 +5,10 @@ from anki.hooks import addHook
 from aqt.utils import showInfo, qconnect
 # Import all of the Qt GUI library
 from aqt.qt import *
-
-# Global variables
-addon_name = "Spellcheck"
-config = mw.addonManager.getConfig(addon_name)
-options = {
-	"language": config["language"]
-}
+import glob
+import os
+# Import constants
+from .const import *
 
 # Options window
 class OptionsDialog(QDialog):
@@ -19,11 +16,13 @@ class OptionsDialog(QDialog):
 		super().__init__()
 		self.setWindowTitle("Spellcheck Options")
 
-		# Language selection
-		self.language_combo = QComboBox()
-		self.language_combo.addItem("English (US)", "en_US")
-		self.language_combo.addItem("English (UK)", "en_UK")
-		self.language_combo.setCurrentIndex(self.language_combo.findData(options["language"]))
+		# Dictionary selection
+		self.dictionary_combo = QComboBox()
+		# Get dictionary file names
+		dict_files = [os.path.basename(x) for x in glob.glob(f"{dict_dir}")]
+		for i in dict_files:
+			self.dictionary_combo.addItem(f"{i}", f"{i}")
+		self.dictionary_combo.setCurrentIndex(self.dictionary_combo.findData(options["dictionary"]))
 
 		# Save buton
 		self.save_button = QPushButton("Save")
@@ -31,16 +30,16 @@ class OptionsDialog(QDialog):
 
 		# Layout
 		layout = QVBoxLayout()
-		layout.addWidget(QLabel("Language:"))
-		layout.addWidget(self.language_combo)
+		layout.addWidget(QLabel("Dictionary:"))
+		layout.addWidget(self.dictionary_combo)
 		layout.addWidget(self.save_button)
 		self.setLayout(layout)
 
 	# Save options
 	def save_options(self):
-		selected_language = self.language_combo.currentData()
-		options["language"] = selected_language
-		config["language"] = selected_language
+		selected_dictionary = self.dictionary_combo.currentData()
+		options["dictionary"] = selected_dictionary
+		config["dictionary"] = selected_dictionary
 		mw.addonManager.writeConfig(addon_name, config)
 		self.close()
 
