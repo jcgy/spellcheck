@@ -1,10 +1,8 @@
 import os
 from aqt import mw
+import glob
 
 # Global variables
-addon_name = "Spellcheck"
-dict_dir = os.path.join(mw.pm.base, "addons21/spellcheck/dictionaries/*")
-config = mw.addonManager.getConfig(addon_name)
-options = {
-	"dictionary": config["dictionary"]
-}
+ADDON_NAME = "Spellcheck"
+DICT_DIR = os.path.join(mw.pm.base, "addons21/spellcheck/dictionaries/*")
+CONFIG = mw.addonManager.getConfig(ADDON_NAME)
