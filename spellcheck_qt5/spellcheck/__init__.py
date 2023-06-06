@@ -1,1 +1,2 @@
-from . import options
+from .options import *
+from .spellchecker import *

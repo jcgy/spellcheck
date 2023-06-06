@@ -19,7 +19,7 @@ class OptionsDialog(QDialog):
 		# Dictionary selection
 		self.dictionary_combo = QComboBox()
 		# Get dictionary file names
-		dict_files = [os.path.basename(x) for x in glob.glob(f"{DICT_DIR}")]
+		dict_files = [os.path.basename(x) for x in glob.glob(f"{DICT_DIR}*")]
 		for i in dict_files:
 			self.dictionary_combo.addItem(f"{i}", f"{i}")
 		self.dictionary_combo.setCurrentIndex(self.dictionary_combo.findData(CONFIG["dictionary"]))
