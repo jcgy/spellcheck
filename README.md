@@ -4,7 +4,7 @@ Anki add-on to check spellings in card editor and suggest correct words. A simpl
 
 #### Installation
 
-Copy the `spellcheck` directory to your `addons21` folder. Move the `dictionaries` directory to the parent folder of `addons21` which should be `Anki2`. It comes with UK and US English but will recognise and load any other .bdic dictionaries that are placed within `dictionaries`.
+Copy the `spellcheck` directory to your `addons21` folder. Move the `spellcheck/dictionaries` subdirectory to the parent folder of `addons21` which should be `Anki2`. It comes with UK and US English but will recognise and load any other .bdic dictionaries that are placed within `dictionaries`.
 
 Dictionaries can be found here: https://github.com/cvsuser-chromium/third_party_hunspell_dictionaries
 
